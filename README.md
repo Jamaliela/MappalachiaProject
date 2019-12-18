@@ -1,5 +1,8 @@
 # Mappalachia
 
+What is it?</br>
+After World War II, Berea College created a general studies course called "Man and the Humanities," in which students studied literature, music, and art. One of the first assignments asked students to draw their home community. Over the four-decade life of this course, some 7,000 drawings were saved. Since many of these students came from the Appalachian region, their drawings depict glimpses of life in the region. In an effort to make these drawings available to alumni, scholars and the public. The originial Mappalachia website can be found at http://mappalachia.org/ However, during the fall of 2019, Dr. Jan Pearce and Dr. Chad Berry along with students May Jue and Emely Alfaro worked on another version of the Mappalacha website in order to present the data differently. This is still a work in progress. 
+
 For the Code files</br>
 So far, our code  is not yet in production, we are still writing the code and tesing the code though our server.</br>
 <h3>To run the code:</h3>
