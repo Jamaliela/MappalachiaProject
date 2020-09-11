@@ -56,6 +56,11 @@ class Table_Item extends Omeka_Db_Table
         }
 
         $select->joinLeft(
+            array('_simple_etx' => $db->ElementText),
+            "_simple_etx.record_id = items.id AND _simple_etx.record_type = 'Item'",
+            array()
+        );
+        $select->joinLeft(
             array('_simple_records_tags' => $db->RecordsTags),
             "_simple_records_tags.record_id = items.id AND _simple_records_tags.record_type = 'Item'",
             array()
@@ -66,12 +71,8 @@ class Table_Item extends Omeka_Db_Table
             array()
         );
 
-        $subquery = new Omeka_Db_Select;
-        $subquery->from(array('_simple_etx' => $db->ElementText), '_simple_etx.record_id')
-            ->where("_simple_etx.record_type = 'Item'")
-            ->where('_simple_etx.text LIKE ?', '%' . $terms . '%');
-
-        $whereCondition = "items.id IN ($subquery) OR "
+        $whereCondition = $db->quoteInto('_simple_etx.text LIKE ?', '%' . $terms . '%')
+                        . ' OR '
                         . $db->quoteInto('_simple_tags.name IN (?)', $tagList);
         $select->where($whereCondition);
     }

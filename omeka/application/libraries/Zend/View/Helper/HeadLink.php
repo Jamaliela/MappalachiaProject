@@ -374,8 +374,6 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
         $media                 = 'screen';
         $conditionalStylesheet = false;
         $href                  = array_shift($args);
-        $extras = array();
-
 
         if ($this->_isDuplicateStylesheet($href)) {
             return false;
@@ -442,7 +440,6 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
         $href  = array_shift($args);
         $type  = array_shift($args);
         $title = array_shift($args);
-        $extras = array();
 
         if(0 < count($args) && is_array($args[0])) {
             $extras = array_shift($args);
@@ -468,10 +465,12 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      */
     protected function _applyExtras($attributes)
     {
-        foreach ($attributes['extras'] as $eKey=>$eVal) {
-            if (isset($attributes[$eKey])) {
-                $attributes[$eKey] = $eVal;
-                unset($attributes['extras'][$eKey]);
+        if (isset($attributes['extras'])) {
+            foreach ($attributes['extras'] as $eKey=>$eVal) {
+                if (isset($attributes[$eKey])) {
+                    $attributes[$eKey] = $eVal;
+                    unset($attributes['extras'][$eKey]);
+                }
             }
         }
         return $attributes;

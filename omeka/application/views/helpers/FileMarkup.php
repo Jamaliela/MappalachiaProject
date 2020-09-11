@@ -529,21 +529,20 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
      * displaying the file and by default wrap it in a <div class="item-file">.
      * 
      * @param File $file
-     * @param array $options Set of options passed by a theme writer to the
+     * @param array $props Set of options passed by a theme writer to the
      * customize the display of any given callback.
      * @param array $wrapperAttributes
      * @return string HTML
      */
-    public function fileMarkup($file, array $options = array(), $wrapperAttributes = array())
+    public function fileMarkup($file, array $props = array(), $wrapperAttributes = array())
     {
-        $options = apply_filters('file_markup_options', $options, array('file' => $file));
-
-        // There is a chance that $options passed in could modify the callback
+        // There is a chance that $props passed in could modify the callback
         // that is used.  Currently used to determine whether or not to display
         // an icon.
-        $callback = $this->getCallback($file, $options);
 
-        $options = array_merge($this->getDefaultOptions($callback), $options);
+        $callback = $this->getCallback($file, $props);
+
+        $options = array_merge($this->getDefaultOptions($callback), $props);
 
         $html = $this->getHtml($file, $callback, $options);
 
@@ -577,11 +576,11 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
      * Return a valid img tag for an image.
      *
      * @param Omeka_Record_AbstractRecord $record
-     * @param array $attrs Image tag attributes
+     * @param array $props Image tag attributes
      * @param string $format Derivative image type (thumbnail, etc.)
      * @return string
      */
-    public function image_tag($record, $attrs, $format)
+    public function image_tag($record, $props, $format)
     {
         if (!($record && $record instanceof Omeka_Record_AbstractRecord)) {
             return false;
@@ -602,7 +601,7 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
         } else {
             $uri = img($this->_getFallbackImage($file));
         }
-        $attrs['src'] = $uri;
+        $props['src'] = $uri;
 
         /** 
          * Determine alt attribute for images
@@ -612,28 +611,23 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
          * 3. original filename for $file
          */
         $alt = '';
-        if (isset($attrs['alt'])) {
-            $alt = $attrs['alt'];
+        if (isset($props['alt'])) {
+            $alt = $props['alt'];
         } elseif ($fileTitle = metadata($file, 'display title', array('no_escape' => true))) {
             $alt = $fileTitle;
         }
-        $attrs['alt'] = $alt;
+        $props['alt'] = $alt;
 
         $title = '';
-        if (isset($attrs['title'])) {
-            $title = $attrs['title'];
+        if (isset($props['title'])) {
+            $title = $props['title'];
         } else {
             $title = $alt;
         }
-        $attrs['title'] = $title;
+        $props['title'] = $title;
 
-        $attrs = apply_filters('image_tag_attributes', $attrs, array(
-            'record' => $record,
-            'file' => $file,
-            'format' => $format,
-        ));
         // Build the img tag
-        return '<img ' . tag_attributes($attrs) . '>';
+        return '<img ' . tag_attributes($props) . '>';
     }
 
     /**
