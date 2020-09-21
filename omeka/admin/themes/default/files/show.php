@@ -31,9 +31,11 @@ echo flash();
         <?php endif; ?>
     </div>
     
-    <div id="item-metadata" class="panel">
+    <div id="item-metadata" class="row">
         <h4><?php echo __('Item'); ?></h4>
-        <p><?php echo link_to_item(null, array(), 'show', $file->getItem()); ?></p>
+        <div class="col-3">
+            <p><?php echo link_to_item(null, array(), 'show', $file->getItem()); ?></p>
+        </div>
     </div>
 
     <div id="file-links" class="panel">
