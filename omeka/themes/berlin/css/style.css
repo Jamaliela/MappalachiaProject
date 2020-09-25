@@ -1103,8 +1103,7 @@ ul.title-list {
 /* Items Classes*/
 .element {
   overflow: hidden;
-  clear: both;
-  margin-bottom: 18px; }
+  clear: both; }
 
 .browse .item {
   clear: both;
