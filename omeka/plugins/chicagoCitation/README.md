@@ -5,7 +5,7 @@ This simple plugin is based on some very helpful code and instructions provided 
 
 The plugin will change the default citation of any Omeka theme. This plugin will check for the Dublin Core element set and orders them according to the Chicago Manual of Style rules pertaining to that item type.
 
-Currently, this document is being used for Still Image item type. d
+Currently, this document is being used for Still Image item type.
 
 This plugin was originally created to serve the needs of "Mapplachia Project" at Berea College.
 
