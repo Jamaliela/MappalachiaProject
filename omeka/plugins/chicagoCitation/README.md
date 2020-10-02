@@ -7,7 +7,6 @@ The plugin will change the default citation of any Omeka theme. This plugin will
 
 Currently, this document is being used for Still Image item type.
 
-This plugin was originally created to serve the needs of "Mapplachia Project" at Berea College.
+This plugin was originally created to serve the needs of "Mappalachia Project" at Berea College.
 
-Elaheh Jamali, 2020 | jamalie@berea.edu
-Guillermo Cruz, 2020 | cruzg@berea.edu
+Elaheh Jamali, 2020 | jamalie@berea.edu, Guillermo Cruz, 2020 | cruzg@berea.edu
