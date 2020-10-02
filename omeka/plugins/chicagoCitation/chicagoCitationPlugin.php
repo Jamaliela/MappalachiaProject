@@ -237,7 +237,7 @@ break;
 //
 // BEGIN DOCUMENT
 
-case 'Document':
+case 'Still Image':
 
 $citation = '';
 
