@@ -3,10 +3,11 @@
 
 This simple plugin is based on some very helpful code and instructions provided on the Omeka forum by sheepeeh (http://omeka.org/forums/topic/change-citation-style)
 
-The plugin will check the "Item Type" metadata element within Omeka's Zotero array, and (according to the Chicago Manual of Style rules pertaining to that item type) generate Chicago citations by pulling from the Zotero metadata associated with the Omeka item
+The plugin will change the default citation of any Omeka theme. This plugin will check for the Dublin Core element set and orders them according to the Chicago Manual of Style rules pertaining to that item type.
 
-Currently, this document will detect the following item types: Book, Book Section, Journal Article, Newspaper Article, Webpage, Thesis, Document
+Currently, this document is being used for Still Image item type. d
 
-This plugin was originally created to serve the needs of New York University Libraries' "Jewish Peddler Project" (http://jewishpeddler.org)
+This plugin was originally created to serve the needs of "Mapplachia Project" at Berea College.
 
-Stephen Balogh, 2015 | stephen.balogh@nyu.edu
+Elaheh Jamali, 2020 | jamalie@berea.edu
+Guillermo Cruz, 2020 | cruzg@berea.edu
