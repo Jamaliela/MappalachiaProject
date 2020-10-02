@@ -17,7 +17,7 @@
 ///
 /// Stephen Balogh, 2015 | stephen.balogh@nyu.edu
 
-class PeddlerCitationPlugin extends Omeka_Plugin_AbstractPlugin
+class chicagoCitationPlugin extends Omeka_Plugin_AbstractPlugin
 {
 	protected $_filters = array('item_citation');
 
@@ -28,8 +28,8 @@ class PeddlerCitationPlugin extends Omeka_Plugin_AbstractPlugin
 		$document = strip_formatting(metadata('item', array('Zotero', 'Item Type')));
 		if ($document) {
 			switch ($document) {
-			
-// BEGIN BOOK			
+
+// BEGIN BOOK
 				case 'Book':
 
 
@@ -59,7 +59,7 @@ class PeddlerCitationPlugin extends Omeka_Plugin_AbstractPlugin
 		} else {
 			$citation .= "Author Unknown. ";
 		}
-	
+
 	/// Note that the following (title) portion is drawing from the DC array, not Zotero!
 
 		$title = strip_formatting(metadata('item', array('Dublin Core', 'Title')));
@@ -78,13 +78,13 @@ class PeddlerCitationPlugin extends Omeka_Plugin_AbstractPlugin
 	/// two fields in publishing metadata –– publisher then location
 				$place = __('%2$s and %1$s', $place[0], $place[1]);
 				break;
-			
+
 			}
 			$citation .= "$place: ";
 		} else {
 			$citation .= "";
 	}
-	
+
 		$publisher = metadata('item', array('Zotero', 'Publisher'), array('all' => true));
 		$publisher = array_filter(array_map('strip_formatting', $publisher));
 		if ($publisher) {
@@ -96,7 +96,7 @@ class PeddlerCitationPlugin extends Omeka_Plugin_AbstractPlugin
 	/// two fields in publishing metadata –– publisher then location
 				$publisher = __('%1$s and %2$s', $publisher[0], $publisher[1]);
 				break;
-			
+
 			}
 			$citation .= "$publisher, ";
 		} else {
@@ -121,7 +121,7 @@ class PeddlerCitationPlugin extends Omeka_Plugin_AbstractPlugin
 	///	$url = html_escape(record_url('item', null, true));
 	/// Chicago-style item citation: access date and URL
 	///	$citation .= __('accessed %1$s, %2$s.', $accessed, $url);
-		
+
 
 break;
 
@@ -175,7 +175,7 @@ $citation = '';
 		} else {
 			$citation .= "<i>Publication Title Missing</i> ";
 	}
-	
+
 		$volume = metadata('item', array('Zotero', 'Volume'), array('all' => true));
 		$volume = array_filter(array_map('strip_formatting', $volume));
 		if ($volume) {
@@ -188,7 +188,7 @@ $citation = '';
 		} else {
 			$citation .= "";
 	}
-	
+
 		$issue = metadata('item', array('Zotero', 'Issue'), array('all' => true));
 		$issue = array_filter(array_map('strip_formatting', $issue));
 		if ($issue) {
@@ -283,7 +283,7 @@ $citation = '';
 		} else {
 			$citation .= "<i>Publication Title Missing</i> ";
 	}
-	
+
 		$editors = metadata('item', array('Zotero', 'Editor'), array('all' => true));
 		$editors = array_filter(array_map('strip_formatting', $editors));
 		if ($editors) {
@@ -308,7 +308,7 @@ $citation = '';
 		} else {
 			$citation .= "";
 	}
-	
+
 	$pagerange = strip_formatting(metadata('item', array('Zotero', 'Pages')));
 		if ($pagerange) {
 			$citation .= ", $pagerange.";
@@ -328,13 +328,13 @@ $citation = '';
 	/// two fields in publishing metadata –– publisher then location
 				$place = __('%2$s and %1$s', $place[0], $place[1]);
 				break;
-			
+
 			}
 			$citation .= " $place: ";
 		} else {
 			$citation .= "";
 	}
-	
+
 		$publisher = metadata('item', array('Zotero', 'Publisher'), array('all' => true));
 		$publisher = array_filter(array_map('strip_formatting', $publisher));
 		if ($publisher) {
@@ -346,7 +346,7 @@ $citation = '';
 	/// two fields in publishing metadata –– publisher then location
 				$publisher = __('%2$s, %1$s', $publisher[0], $publisher[1]);
 				break;
-			
+
 			}
 			$citation .= "$publisher, ";
 		} else {
@@ -432,13 +432,13 @@ $citation = '';
 	/// two fields in publishing metadata –– publisher then location
 				$arcloc = __('%2$s and %1$s', $arcloc[0], $arcloc[1]);
 				break;
-			
+
 			}
 			$citation .= " $arcloc.";
 		} else {
 			$citation .= "";
 	}
-	
+
 
 break;
 
@@ -492,8 +492,8 @@ $citation = '';
 		} else {
 			$citation .= "<i>Publication Title Missing</i>";
 	}
-	
-		
+
+
 		$date = metadata('item', array('Zotero', 'Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $date));
 		if ($date) {
@@ -563,7 +563,7 @@ $citation = '';
 			$citation .= "“".$title.".” ";
 		}
 
-	
+
 		$publisher = metadata('item', array('Zotero', 'Publisher'), array('all' => true));
 		$publisher = array_filter(array_map('strip_formatting', $publisher));
 		$place = strip_formatting(metadata('item', array('Zotero', 'Place')));
@@ -576,7 +576,7 @@ $citation = '';
 	/// two fields in publishing metadata –– publisher then location
 				$publisher = __('%2$s, %1$s', $publisher[0], $publisher[1]);
 				break;
-			
+
 			}
 			$citation .= "Thesis, $publisher, ";
 		} elseif ($place) {
@@ -600,7 +600,7 @@ $citation = '';
 	}
 
 
-break; 
+break;
 
 // END THESIS
 //
@@ -622,13 +622,13 @@ $citation = '';
 		} else {
 			$citation .= "<i>Unnamed Web Collection.</i> ";
 	}
-	
+
 			$title = strip_formatting(metadata('item', array('Dublin Core', 'Title')));
 		if ($title) {
 			$citation .= " “".$title.".” ";
 		}
 
-		
+
 		$dateacc = metadata('item', array('Zotero', 'Access Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $dateacc));
 		if ($date) {
