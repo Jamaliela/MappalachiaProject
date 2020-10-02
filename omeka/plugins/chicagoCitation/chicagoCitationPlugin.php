@@ -25,7 +25,7 @@ class chicagoCitationPlugin extends Omeka_Plugin_AbstractPlugin
 	{
 
 /// BEGINNING OF DOCUMENT TYPE CHECKER
-		$document = strip_formatting(metadata('item', array('Dublin Core', 'Item Type')));
+		$document = strip_formatting(metadata('item', array('Item Type Metadata', 'Item Type')));
 		if ($document) {
 			switch ($document) {
 
