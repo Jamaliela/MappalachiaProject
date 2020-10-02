@@ -2,9 +2,9 @@
 /// This simple plugin is based on some very helpful code and instructions provided on
 /// the Omeka forum by sheepeeh (http://omeka.org/forums/topic/change-citation-style)
 ///
-/// The plugin will check the "Item Type" metadata element within Omeka's Zotero array,
+/// The plugin will check the "Item Type" metadata element within Omeka's Dublin Core array,
 /// and (according to the Chicago Manual of Style rules pertaining to that item type)
-/// generate Chicago citations by pulling from the Zotero metadata associated with the
+/// generate Chicago citations by pulling from the Dublin Core metadata associated with the
 /// Omeka item.
 ///
 /// Currently, this document will detect the following item types:
@@ -25,7 +25,7 @@ class chicagoCitationPlugin extends Omeka_Plugin_AbstractPlugin
 	{
 
 /// BEGINNING OF DOCUMENT TYPE CHECKER
-		$document = strip_formatting(metadata('item', array('Zotero', 'Item Type')));
+		$document = strip_formatting(metadata('item', array('Dublin Core', 'Item Type')));
 		if ($document) {
 			switch ($document) {
 
@@ -35,7 +35,7 @@ class chicagoCitationPlugin extends Omeka_Plugin_AbstractPlugin
 
 		$citation = '';
 
-		$authors = metadata('item', array('Zotero', 'Author'), array('all' => true));
+		$authors = metadata('item', array('Dublin Core', 'Author'), array('all' => true));
 	/// Strip formatting and remove empty creator elements.
 		$authors = array_filter(array_map('strip_formatting', $authors));
 		if ($authors) {
@@ -60,14 +60,14 @@ class chicagoCitationPlugin extends Omeka_Plugin_AbstractPlugin
 			$citation .= "Author Unknown. ";
 		}
 
-	/// Note that the following (title) portion is drawing from the DC array, not Zotero!
+	/// Note that the following (title) portion is drawing from the DC array, not Dublin Core!
 
 		$title = strip_formatting(metadata('item', array('Dublin Core', 'Title')));
 		if ($title) {
 			$citation .= "<i>$title</i> (";
 		}
 
-		$place = metadata('item', array('Zotero', 'Place'), array('all' => true));
+		$place = metadata('item', array('Dublin Core', 'Place'), array('all' => true));
 		$place = array_filter(array_map('strip_formatting', $place));
 		if ($place) {
 			switch (count($place)) {
@@ -85,7 +85,7 @@ class chicagoCitationPlugin extends Omeka_Plugin_AbstractPlugin
 			$citation .= "";
 	}
 
-		$publisher = metadata('item', array('Zotero', 'Publisher'), array('all' => true));
+		$publisher = metadata('item', array('Dublin Core', 'Publisher'), array('all' => true));
 		$publisher = array_filter(array_map('strip_formatting', $publisher));
 		if ($publisher) {
 			switch (count($publisher)) {
@@ -104,7 +104,7 @@ class chicagoCitationPlugin extends Omeka_Plugin_AbstractPlugin
 	}
 
 
-		$date = metadata('item', array('Zotero', 'Date'), array('all' => true));
+		$date = metadata('item', array('Dublin Core', 'Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $date));
 		if ($date) {
 			switch (count($date)) {
@@ -133,7 +133,7 @@ case 'Journal Article':
 
 $citation = '';
 
-		$authors = metadata('item', array('Zotero', 'Author'), array('all' => true));
+		$authors = metadata('item', array('Dublin Core', 'Author'), array('all' => true));
 	/// Strip formatting and remove empty author elements.
 		$authors = array_filter(array_map('strip_formatting', $authors));
 		if ($authors) {
@@ -163,7 +163,7 @@ $citation = '';
 			$citation .= "“".$title.".” ";
 		}
 
-		$publication = metadata('item', array('Zotero', 'Publication Title'), array('all' => true));
+		$publication = metadata('item', array('Dublin Core', 'Publication Title'), array('all' => true));
 		$publication = array_filter(array_map('strip_formatting', $publication));
 		if ($publication) {
 			switch (count($publication)) {
@@ -176,7 +176,7 @@ $citation = '';
 			$citation .= "<i>Publication Title Missing</i> ";
 	}
 
-		$volume = metadata('item', array('Zotero', 'Volume'), array('all' => true));
+		$volume = metadata('item', array('Dublin Core', 'Volume'), array('all' => true));
 		$volume = array_filter(array_map('strip_formatting', $volume));
 		if ($volume) {
 		switch (count($volume)) {
@@ -189,7 +189,7 @@ $citation = '';
 			$citation .= "";
 	}
 
-		$issue = metadata('item', array('Zotero', 'Issue'), array('all' => true));
+		$issue = metadata('item', array('Dublin Core', 'Issue'), array('all' => true));
 		$issue = array_filter(array_map('strip_formatting', $issue));
 		if ($issue) {
 			switch (count($issue)) {
@@ -203,7 +203,7 @@ $citation = '';
 	}
 
 
-		$date = metadata('item', array('Zotero', 'Date'), array('all' => true));
+		$date = metadata('item', array('Dublin Core', 'Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $date));
 		if ($date) {
 			switch (count($date)) {
@@ -216,7 +216,7 @@ $citation = '';
 			$citation .= "(Unknown Date)";
 	}
 
-			$pagerange = strip_formatting(metadata('item', array('Zotero', 'Pages')));
+			$pagerange = strip_formatting(metadata('item', array('Dublin Core', 'Pages')));
 		if ($pagerange) {
 			$citation .= ": $pagerange.";
 		}
@@ -224,7 +224,7 @@ $citation = '';
 			$citation .= ".";
 }
 
-		$DOI = strip_formatting(metadata('item', array('Zotero', 'DOI')));
+		$DOI = strip_formatting(metadata('item', array('Dublin Core', 'DOI')));
 		if ($DOI) {
 			$citation .= " doi: $DOI.";
 		}
@@ -241,7 +241,7 @@ case 'Still Image':
 
 $citation = '';
 
-		$authors = metadata('item', array('Zotero', 'Author'), array('all' => true));
+		$authors = metadata('item', array('Dublin Core', 'Author'), array('all' => true));
 	/// Strip formatting and remove empty author elements.
 		$authors = array_filter(array_map('strip_formatting', $authors));
 		if ($authors) {
@@ -271,7 +271,7 @@ $citation = '';
 			$citation .= "$title";
 		}
 
-		$date = metadata('item', array('Zotero', 'Date'), array('all' => true));
+		$date = metadata('item', array('Dublin Core', 'Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $date));
 		if ($date) {
 			switch (count($date)) {
@@ -284,7 +284,7 @@ $citation = '';
 			$citation .= ".";
 	}
 
-		$arcloc = metadata('item', array('Zotero', 'Archive Location'), array('all' => true));
+		$arcloc = metadata('item', array('Dublin Core', 'Archive Location'), array('all' => true));
 		$arcloc = array_filter(array_map('strip_formatting', $arcloc));
 		if ($arcloc) {
 			switch (count($arcloc)) {
@@ -313,7 +313,7 @@ case 'Newspaper Article':
 
 $citation = '';
 
-		$authors = metadata('item', array('Zotero', 'Author'), array('all' => true));
+		$authors = metadata('item', array('Dublin Core', 'Author'), array('all' => true));
 	/// Strip formatting and remove empty author elements.
 		$authors = array_filter(array_map('strip_formatting', $authors));
 		if ($authors) {
@@ -343,7 +343,7 @@ $citation = '';
 			$citation .= "“".$title.".” ";
 		}
 
-		$publication = metadata('item', array('Zotero', 'Publication Title'), array('all' => true));
+		$publication = metadata('item', array('Dublin Core', 'Publication Title'), array('all' => true));
 		$publication = array_filter(array_map('strip_formatting', $publication));
 		if ($publication) {
 			switch (count($publication)) {
@@ -357,7 +357,7 @@ $citation = '';
 	}
 
 
-		$date = metadata('item', array('Zotero', 'Date'), array('all' => true));
+		$date = metadata('item', array('Dublin Core', 'Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $date));
 		if ($date) {
 			switch (count($date)) {
@@ -370,7 +370,7 @@ $citation = '';
 			$citation .= ", (Unknown Date)";
 	}
 
-			$pagerange = strip_formatting(metadata('item', array('Zotero', 'Pages')));
+			$pagerange = strip_formatting(metadata('item', array('Dublin Core', 'Pages')));
 		if ($pagerange) {
 			$citation .= ": $pagerange";
 		}
@@ -378,7 +378,7 @@ $citation = '';
 			$citation .= "";
 }
 
-			$url = strip_formatting(metadata('item', array('Zotero', 'URL')));
+			$url = strip_formatting(metadata('item', array('Dublin Core', 'URL')));
 		if ($url) {
 			$citation .= ", <a href=\"$url\">$url</a>";
 		}
@@ -396,7 +396,7 @@ case 'Thesis':
 
 $citation = '';
 
-		$authors = metadata('item', array('Zotero', 'Author'), array('all' => true));
+		$authors = metadata('item', array('Dublin Core', 'Author'), array('all' => true));
 	/// Strip formatting and remove empty author elements.
 		$authors = array_filter(array_map('strip_formatting', $authors));
 		if ($authors) {
@@ -427,9 +427,9 @@ $citation = '';
 		}
 
 
-		$publisher = metadata('item', array('Zotero', 'Publisher'), array('all' => true));
+		$publisher = metadata('item', array('Dublin Core', 'Publisher'), array('all' => true));
 		$publisher = array_filter(array_map('strip_formatting', $publisher));
-		$place = strip_formatting(metadata('item', array('Zotero', 'Place')));
+		$place = strip_formatting(metadata('item', array('Dublin Core', 'Place')));
 		if ($publisher) {
 			switch (count($publisher)) {
 				case 1:
@@ -449,7 +449,7 @@ $citation = '';
 	}
 
 
-		$date = metadata('item', array('Zotero', 'Date'), array('all' => true));
+		$date = metadata('item', array('Dublin Core', 'Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $date));
 		if ($date) {
 			switch (count($date)) {
@@ -473,7 +473,7 @@ case 'Webpage':
 
 $citation = '';
 
-		$publication = metadata('item', array('Zotero', 'Publication Title'), array('all' => true));
+		$publication = metadata('item', array('Dublin Core', 'Publication Title'), array('all' => true));
 		$publication = array_filter(array_map('strip_formatting', $publication));
 		if ($publication) {
 			switch (count($publication)) {
@@ -492,7 +492,7 @@ $citation = '';
 		}
 
 
-		$dateacc = metadata('item', array('Zotero', 'Access Date'), array('all' => true));
+		$dateacc = metadata('item', array('Dublin Core', 'Access Date'), array('all' => true));
 		$date = array_filter(array_map('strip_formatting', $dateacc));
 		if ($date) {
 			switch (count($dateacc)) {
@@ -505,7 +505,7 @@ $citation = '';
 			$citation .= "";
 	}
 
-			$url = strip_formatting(metadata('item', array('Zotero', 'URL')));
+			$url = strip_formatting(metadata('item', array('Dublin Core', 'URL')));
 		if ($url) {
 			$citation .= "<a href=\"$url\">$url</a>";
 		}
