@@ -1,7 +1,7 @@
 # Mappalachia
 
 After World War II, Berea College created a general studies course called "Man and the Humanities," in which students studied literature, music, and art. One of the first assignments asked students to draw their home community.
-Mappalachia is a web platform that uses [Omeka Classic](https://omeka.org/classic/) to share their drawings that depict glimpses of life in the Appalachian region. This is in an effort to make these drawings available to alumni, scholars, and the public. 
+Mappalachia is a web platform that uses [Omeka Classic](https://omeka.org/classic/) to share students drawings that depict glimpses of life in the Appalachian region. This is in an effort to make these drawings available to alumni, scholars, and the public. 
 
 ## Before Running
 
